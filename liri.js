@@ -96,58 +96,148 @@ else if (nodeArgs[2] === 'spotify-this-song') {
     //     secret: "9f494962ef1744db9ab47501a4500e2f"
     // });
 
-    spotify.search({ type: 'track', query: input })
-        .then(function (response) {
-            // console.log(response.tracks.items[0]);
+    if (nodeArgs[3] === undefined) {
+        // return console.log("Are you sure? Please input artist name!!!!")
+        return spotdefault();
+    } else {
 
-            var songInfo = response.tracks.items[0];
+        spotify.search({ type: 'track', query: input })
+            .then(function (response) {
+                // console.log(response.tracks.items[0]);
 
-            //The artist(s) name
-            var artistArr = [];
-            for (var i = 0; i < songInfo.artists.length; i++) {
-                // console.log(songInfo.artists[i].name);
-                artistArr.push(songInfo.artists[i].name)
-            }
-            console.log("The artist(s) name: "+artistArr.join(", "));
+                var songInfo = response.tracks.items[0];
 
-            // The song's name
-            console.log("The song's name: " + songInfo.name);
-            // A preview link of the song from Spotify
-            console.log("A preview link of the song from Spotify: " + songInfo.preview_url);
-            // The album that the song is from
-            console.log("The album: " + songInfo.album.name);
+                //The artist(s) name
+                var artistArr = [];
+                for (var i = 0; i < songInfo.artists.length; i++) {
+                    // console.log(songInfo.artists[i].name);
+                    artistArr.push(songInfo.artists[i].name)
+                }
+                console.log("The artist(s) name: " + artistArr.join(", "));
 
-        })
-        .catch(function (err) {
-            console.log(err);
-        });
+                // The song's name
+                console.log("The song's name: " + songInfo.name);
+                // A preview link of the song from Spotify
+                console.log("A preview link of the song from Spotify: " + songInfo.preview_url);
+                // The album that the song is from
+                console.log("The album: " + songInfo.album.name);
 
+            })
+            .catch(function (err) {
+                // console.log(err);
+                spotdefault();
+            });
+    }
+    // If no song is provided then your program will default to "The Sign" by Ace of Base.        
+    function spotdefault() {
+        spotify.search({ type: 'track', query: "Ace of Base" })
+            .then(function (response) {
+                // console.log(response.tracks.items[0]);
 
+                var songInfo = response.tracks.items[0];
+
+                //The artist(s) name
+                var artistArr = [];
+                for (var i = 0; i < songInfo.artists.length; i++) {
+                    // console.log(songInfo.artists[i].name);
+                    artistArr.push(songInfo.artists[i].name)
+                }
+                console.log("The artist(s) name: " + artistArr.join(", "));
+
+                // The song's name
+                console.log("The song's name: " + songInfo.name);
+                // A preview link of the song from Spotify
+                console.log("A preview link of the song from Spotify: " + songInfo.preview_url);
+                // The album that the song is from
+                console.log("The album: " + songInfo.album.name);
+
+            })
+            .catch(function (err) {
+                console.log(err);
+            });
+    };
 
 }
 
-// `node liri.js movie-this '<movie name here>'`
-// * This will output the following information to your terminal/bash window:
 
-//      ```
-//        * Title of the movie.
-//        * Year the movie came out.
-//        * IMDB Rating of the movie.
-//        * Rotten Tomatoes Rating of the movie.
-//        * Country where the movie was produced.
-//        * Language of the movie.
-//        * Plot of the movie.
-//        * Actors in the movie.
-//      ```
+else if (nodeArgs[2] === 'movie-this') {
+    // `node liri.js movie-this '<movie name here>'`
+    // * This will output the following information to your terminal/bash window:
 
-//    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+    //      ```
+    //        * Title of the movie.
+    //        * Year the movie came out.
+    //        * IMDB Rating of the movie.
+    //        * Rotten Tomatoes Rating of the movie.
+    //        * Country where the movie was produced.
+    //        * Language of the movie.
+    //        * Plot of the movie.
+    //        * Actors in the movie.
+    //      ```
 
-//      * If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
+    //    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+    //      * If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
+    //      * It's on Netflix!
+    //    * You'll use the `axios` package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use `trilogy`.
 
-//      * It's on Netflix!
+    // Then run a request with axios to the OMDB API with the movie specified
+    var queryUrl = "http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy";
 
-//    * You'll use the `axios` package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use `trilogy`.
+    // This line is just to help us debug against the actual URL.
+    // console.log(queryUrl);
+
+    function getmovie(response) {
+        // console.log(response)
+
+        //        * Title of the movie.
+        console.log("Title of the movie: " + response.data.Title)
+        //        * Year the movie came out.
+        console.log("Year the movie came out: " + response.data.Year)
+        //        * IMDB Rating of the movie.
+        console.log("IMDB Rating of the movie: " + response.data.imdbRating)
+        //        * Rotten Tomatoes Rating of the movie.
+        console.log(response.data.Ratings[1].Source + " Rating of the movie: " + response.data.Ratings[1].Value)
+        //        * Country where the movie was produced.
+        console.log("Country where the movie was produced: " + response.data.Country)
+        //        * Language of the movie.
+        console.log("Language of the movie: " + response.data.Language)
+        //        * Plot of the movie.
+        console.log("Plot of the movie: " + response.data.Plot)
+        //        * Actors in the movie.
+        console.log("Actors in the movie: " + response.data.Actors)
+    };
 
 
+    if (nodeArgs[3] === undefined) {
+        // return console.log("Are you sure? Please input movie name!!!!")
+        // * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
+        //      * If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
+        //      * It's on Netflix!
+        queryUrl = "http://www.omdbapi.com/?t=Mr. Nobody&y=&plot=short&apikey=trilogy";
+        axios.get(queryUrl).then(
+            function (response) {
+                // console.log(response)
+                getmovie(response);
+                console.log("If you haven't watched 'Mr. Nobody,' then you should: <http://www.imdb.com/title/tt0485947/>");
+                console.log("It's on Netflix!");
+            }
+        );
+    } else {
+        axios.get(queryUrl).then(
+            function (response) {
+                // console.log(response)
+                getmovie(response);
+            }
+        );
+    }
+
+}
+
+else if (nodeArgs[2] === 'do-what-it-says') {
 // `node liri.js do-what-it-says`
 
+// * Using the `fs` Node package, LIRI will take the text inside of random.txt and then use it to call one of LIRI's commands.
+// * It should run `spotify-this-song` for "I Want it That Way," as follows the text in `random.txt`.
+// * Edit the text in random.txt to test out the feature for movie-this and concert-this.
+
+}
