@@ -96,8 +96,8 @@ function liri() {
         var spotify = new Spotify(keys.spotify);
 
         // var spotify = new Spotify({
-        //     id: "4d4f627d4d8b40f6bc6682440ab7645f",
-        //     secret: "9f494962ef1744db9ab47501a4500e2f"
+        //     id: "",
+        //     secret: ""
         // });
 
         if (nodeArgs[3] === undefined) {
