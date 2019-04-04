@@ -24,8 +24,9 @@
 https://drive.google.com/open?id=1UYXFkkwCIZaBZn7yB6vma-H1-_QvFexr
 
 ![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/drake.PNG)
-![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/liri.js)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
-![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/movie.PNG)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/movie1.PNG)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/nicki.PNG)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/say.PNG)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/song.PNG)
+![Image of Yaktocat](https://github.com/davidvo1990/LIRI-Bot/blob/master/image/spot.PNG)
