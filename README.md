@@ -21,6 +21,7 @@
 
 ### Video Demo
 
+[![Watch the video](https://img.youtube.com/vi/T-D1KVIuvjA/maxresdefault.jpg)](https://github.com/davidvo1990/LIRI-Bot/blob/master/liri.webm)
 https://drive.google.com/open?id=1UYXFkkwCIZaBZn7yB6vma-H1-_QvFexr
 
 ### What Each Command Should Do
